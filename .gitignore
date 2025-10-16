@@ -1,19 +1,62 @@
 # Dependencies
 node_modules/
+**/node_modules/
 
 # Build outputs
 dist/
 build/
+**/dist/
+**/build/
 
-# IDE
-.vscode/
+# Logs
+logs/
+*.log
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# Tests
+coverage/
+**/coverage/
+.nyc_output/
+**/.nyc_output/
+
+# Environment variables
+#.env
+#.env.local
+#.env.development.local
+#.env.test.local
+#.env.production.local
+
+# IDEs and editors
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
 .idea/
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
 
 # OS
 .DS_Store
+Thumbs.db
 
-# Logs
-*.log
+# Runtime data
+pids/
+*.pid
+*.seed
+*.pid.lock
 
-# Coverage
-coverage/
+# Temporary directories
+.temp/
+.tmp/
+
+# Diagnostic reports
+report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json

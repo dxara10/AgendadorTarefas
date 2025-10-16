@@ -39,7 +39,7 @@ async function bootstrap() {
    * - 5173: Porta padrão do Vite (React)
    */
   app.enableCors({
-    origin: ['http://localhost:3000', 'http://localhost:5173'],
+    origin: ['http://localhost:3000', 'http://localhost:5173', 'http://localhost:5174', 'http://localhost:5175', 'http://localhost:5176'],
     credentials: true, // Permite cookies e headers de autenticação
   });
 
