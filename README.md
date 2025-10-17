@@ -11,30 +11,40 @@ Sistema completo para gerenciamento de tarefas em escritórios de advocacia, des
 
 ## 🚀 Como rodar o projeto
 
-### 🎯 Opção 1: Inicialização Rápida (Recomendado)
+### 🎯 Inicialização Rápida (Recomendado)
 
 ```bash
 # Instala todas as dependências (apenas na primeira vez)
 npm run install:all
 
-# Inicia tudo (MongoDB + Backend + Frontend)
-npm run start:full
-```
-
-**Ou separadamente:**
-```bash
-# Inicia apenas MongoDB
+# Inicia MongoDB
 docker-compose up -d
 
-# Inicia backend e frontend
+# Inicia backend e frontend simultaneamente
 npm run dev
 ```
 
 **Para parar**: Pressione `Ctrl+C` no terminal
 
+### ☁️ Para GitHub Codespaces
+
+Se estiver usando GitHub Codespaces, após rodar os comandos acima:
+
+1. **Verifique as portas** na aba "PORTS" do VS Code
+2. **Copie a URL pública** da porta 3000 (Backend)
+3. **Ajuste a comunicação** editando `frontend/src/servicos/api.ts`:
+
+```javascript
+// Linha 13 - trocar de:
+baseURL: 'http://localhost:3000'
+
+// Para (usando sua URL do Codespaces):
+baseURL: 'https://sua-url-3000.github.dev'
+```
+
 ---
 
-### 🔧 Opção 2: Inicialização Manual
+### 🔧 Inicialização Manual (Alternativa)
 
 ### 1. Pré-requisitos
 
@@ -185,7 +195,9 @@ O projeto foi desenvolvido seguindo **Test-Driven Development**:
 
 ### Projeto Completo
 ```bash
-./start-dev.sh       # Inicia tudo (banco + backend + frontend)
+npm run install:all  # Instala todas as dependências
+npm run dev          # Inicia backend e frontend juntos
+npm run start:full   # Inicia MongoDB + backend + frontend
 ```
 
 ### Backend
@@ -263,6 +275,17 @@ npm install
 
 ### Erro de CORS no frontend
 Verifique se o backend está rodando na porta 3000 e o frontend na 5173.
+
+### Problemas no GitHub Codespaces
+```bash
+# 1. Verifique se todos os serviços estão rodando
+docker ps  # MongoDB deve aparecer
+npm run dev  # Backend e frontend devem iniciar
+
+# 2. Verifique as portas na aba "PORTS" do VS Code
+# 3. Ajuste a URL no arquivo frontend/src/servicos/api.ts
+# 4. Use a URL pública da porta 3000 do Codespaces
+```
 
 ## 📝 Próximos Passos
 
