@@ -1,0 +1,24 @@
+{
+  "name": "Agendador Tarefas",
+  "image": "mcr.microsoft.com/devcontainers/javascript-node:18",
+  "forwardPorts": [3000, 5173, 8081, 27018],
+  "portsAttributes": {
+    "3000": {
+      "label": "Backend API",
+      "visibility": "public"
+    },
+    "5173": {
+      "label": "Frontend React", 
+      "visibility": "public"
+    },
+    "8081": {
+      "label": "MongoDB Express",
+      "visibility": "public"
+    },
+    "27018": {
+      "label": "MongoDB",
+      "visibility": "private"
+    }
+  },
+  "postCreateCommand": "npm run install:all"
+}
