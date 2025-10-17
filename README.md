@@ -13,26 +13,16 @@ Sistema completo para gerenciamento de tarefas em escritórios de advocacia, des
 
 ### 🎯 Opção 1: Inicialização Rápida (Recomendado)
 
-**Linux/Mac:**
 ```bash
-# Torna o script executável (apenas na primeira vez)
-chmod +x start-dev.sh
+# Instala todas as dependências (apenas na primeira vez)
+npm run install:all
 
-# Inicia tudo de uma vez
-./start-dev.sh
+# Inicia MongoDB
+docker-compose up -d
+
+# Inicia backend e frontend simultaneamente
+npm run dev
 ```
-
-**Windows:**
-```cmd
-# Duplo clique no arquivo ou execute no terminal
-start-dev.bat
-```
-
-Este script irá:
-- ✅ Iniciar o MongoDB via Docker
-- ✅ Iniciar o Backend (porta 3000)
-- ✅ Iniciar o Frontend (porta 5173)
-- ✅ Mostrar todos os links de acesso
 
 **Para parar**: Pressione `Ctrl+C` no terminal
 
