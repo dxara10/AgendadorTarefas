@@ -11,28 +11,21 @@ import axios from 'axios'
  * - headers: Define Content-Type padrão como JSON
  */
 const getBaseURL = () => {
-  const hostname = window.location.hostname
-  const protocol = window.location.protocol
+  let baseURL
   
-  // Debug: mostra no console para verificar
-  console.log('🔍 Hostname:', hostname)
-  console.log('🔍 Origin:', window.location.origin)
-  
-  // Se estiver no Codespaces (várias variações possíveis)
-  if (hostname.includes('github.dev') || 
-      hostname.includes('codespaces') ||
-      hostname.includes('preview.app.github.dev') ||
-      hostname.includes('app.github.dev')) {
-    
-    // Constrói URL do backend baseada no frontend
-    const backendUrl = `${protocol}//${hostname.replace('-5173', '-3000')}`
-    console.log('🌐 Codespaces detectado, usando:', backendUrl)
-    return backendUrl
+  // Se não for localhost, assume que é Codespaces
+  if (window.location.hostname !== 'localhost') {
+    // Pega a URL atual e troca a porta 5173 por 3000
+    baseURL = window.location.origin.replace('5173', '3000')
+  } else {
+    baseURL = 'http://localhost:3000'
   }
   
-  // Desenvolvimento local
-  console.log('🏠 Local detectado, usando: http://localhost:3000')
-  return 'http://localhost:3000'
+  // DEBUG: Mostra no console
+  console.log('🌐 Frontend URL:', window.location.origin)
+  console.log('🔧 Backend URL:', baseURL)
+  
+  return baseURL
 }
 
 const api = axios.create({

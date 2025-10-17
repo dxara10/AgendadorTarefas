@@ -17,10 +17,16 @@ Sistema completo para gerenciamento de tarefas em escritórios de advocacia, des
 # Instala todas as dependências (apenas na primeira vez)
 npm run install:all
 
-# Inicia MongoDB
+# Inicia tudo (MongoDB + Backend + Frontend)
+npm run start:full
+```
+
+**Ou separadamente:**
+```bash
+# Inicia apenas MongoDB
 docker-compose up -d
 
-# Inicia backend e frontend simultaneamente
+# Inicia backend e frontend
 npm run dev
 ```
 

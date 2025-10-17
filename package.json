@@ -4,9 +4,10 @@
   "description": "Sistema completo para gerenciamento de tarefas em escritórios de advocacia",
   "scripts": {
     "install:all": "npm install && cd backend && npm install && cd ../frontend && npm install",
-    "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
+    "dev": "docker-compose up -d && concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
     "dev:backend": "cd backend && npm run start:dev",
     "dev:frontend": "cd frontend && npm run dev",
+    "start:full": "docker-compose up -d && sleep 5 && npm run dev",
     "test": "concurrently \"npm run test:backend\" \"npm run test:frontend\"",
     "test:backend": "cd backend && npm test",
     "test:frontend": "cd frontend && npm run test:run",
