@@ -27,9 +27,12 @@ docker-compose up -d
 echo "⏳ Aguardando MongoDB..."
 sleep 5
 
+# Salva o diretório atual
+PROJECT_DIR=$(pwd)
+
 # Inicia o backend
 echo "🔧 Iniciando Backend (porta 3000)..."
-cd backend && npm run start:dev &
+(cd "$PROJECT_DIR/backend" && npm run start:dev) &
 BACKEND_PID=$!
 
 # Aguarda o backend iniciar
@@ -37,7 +40,7 @@ sleep 3
 
 # Inicia o frontend
 echo "🎨 Iniciando Frontend (porta 5173)..."
-cd ../frontend && npm run dev &
+(cd "$PROJECT_DIR/frontend" && npm run dev) &
 FRONTEND_PID=$!
 
 echo ""
