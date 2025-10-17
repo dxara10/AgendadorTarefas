@@ -7,11 +7,20 @@ import axios from 'axios'
 /**
  * Configuração da instância do Axios para comunicação com o backend
  * 
- * - baseURL: Aponta para o backend NestJS na porta 3000
+ * - baseURL: Detecta automaticamente se está no Codespaces ou local
  * - headers: Define Content-Type padrão como JSON
  */
+const getBaseURL = () => {
+  // Se estiver no Codespaces, usa a URL pública
+  if (window.location.hostname.includes('github.dev') || window.location.hostname.includes('codespaces')) {
+    return window.location.origin.replace('5173', '3000')
+  }
+  // Caso contrário, usa localhost
+  return 'http://localhost:3000'
+}
+
 const api = axios.create({
-  baseURL: 'http://localhost:3000', // Backend NestJS
+  baseURL: getBaseURL(),
   headers: {
     'Content-Type': 'application/json'
   },

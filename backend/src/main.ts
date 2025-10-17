@@ -34,12 +34,24 @@ async function bootstrap() {
   /**
    * Configuração CORS (Cross-Origin Resource Sharing)
    * 
-   * Permite que o frontend acesse a API de diferentes portas
-   * - 3000: Caso o frontend rode na mesma porta
-   * - 5173: Porta padrão do Vite (React)
+   * Permite que o frontend acesse a API de diferentes ambientes
+   * - localhost: Desenvolvimento local
+   * - github.dev: GitHub Codespaces
+   * - preview.app.github.dev: Codespaces preview
    */
   app.enableCors({
-    origin: ['http://localhost:3000', 'http://localhost:5173', 'http://localhost:5174', 'http://localhost:5175', 'http://localhost:5176'],
+    origin: (origin, callback) => {
+      // Permite localhost e qualquer subdomínio do GitHub
+      if (!origin || 
+          origin.includes('localhost') || 
+          origin.includes('github.dev') || 
+          origin.includes('codespaces') ||
+          origin.includes('preview.app.github.dev')) {
+        callback(null, true)
+      } else {
+        callback(new Error('Não permitido pelo CORS'))
+      }
+    },
     credentials: true, // Permite cookies e headers de autenticação
   });
 
